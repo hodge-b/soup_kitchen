@@ -26,6 +26,11 @@ app.get('/api/get', (req, res) => {
     })
 })
 
+app.get('api/get/:item', (req, res) => {
+    const item = req.body.item;
+    res.send(item);
+})
+
 
 app.listen(PORT, () => {
     console.log(`server running on PORT ${PORT}`)

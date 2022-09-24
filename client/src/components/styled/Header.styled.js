@@ -6,6 +6,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     
     padding: 1rem;
+    width: 100%;
     border-bottom: 1px solid black;
 
     ul{

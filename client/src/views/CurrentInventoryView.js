@@ -6,16 +6,21 @@ import { StyledCurrentInventoryView } from './styled/CurrentInventoryView.styled
 
 
 export default function CurrentInventoryView({
-    inventoryList
+    inventoryList,
+    item,
+    setItem,
+    onSearch,
 }) {
 
     return(
         <StyledCurrentInventoryView>
             <Header />
             <h2 className='currentInventory-title'>Current Inventory</h2>
-            <hr />
-            <Search />
-            <hr />
+            <Search 
+                item={item}
+                setItem={setItem}
+                onSearch={onSearch}
+            />
             <Inventory
                 inventoryList={inventoryList}
             />

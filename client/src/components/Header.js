@@ -8,7 +8,7 @@ export default function Header() {
             <div className="header-logo">Soup Kitchen</div>
             <ul>
                 <li>Home</li>
-                <li>Add Inventory</li>
+                <li>Add Item</li>
                 <li>About</li>
             </ul>
         </StyledHeader>

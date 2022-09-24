@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import { StyledSearch } from './styled/Search.styled';
 
-export default function Search() {
+export default function Search({item, setItem, onSearch}) {
+
+    const handleSearchChange = useCallback(e => {
+        setItem(e.target.value);
+    }, [setItem])
+
 
     return(
         <StyledSearch>
-            <h2>Search</h2>
+            <div className="form-group">
+                <label>Search Item</label>
+                <input type="text"
+                    name='searchItem'
+                    value={item}
+                    onChange={handleSearchChange}
+                />
+                <button onClick={onSearch}>Search</button>
+            </div>
         </StyledSearch>
     )
 }
