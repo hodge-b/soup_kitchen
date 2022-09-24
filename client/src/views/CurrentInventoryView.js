@@ -5,7 +5,9 @@ import Search from '../components/Search';
 import { StyledCurrentInventoryView } from './styled/CurrentInventoryView.styled';
 
 
-export default function CurrentInventoryView() {
+export default function CurrentInventoryView({
+    inventoryList
+}) {
 
     return(
         <StyledCurrentInventoryView>
@@ -14,7 +16,9 @@ export default function CurrentInventoryView() {
             <hr />
             <Search />
             <hr />
-            <Inventory />
+            <Inventory
+                inventoryList={inventoryList}
+            />
         </StyledCurrentInventoryView>
     )
 }
