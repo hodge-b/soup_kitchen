@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const StyledSearch = styled.div`
     position: relative;
-    padding: 1rem 0;
+    padding: .5rem 0;
 
-    width: 50%;
+    width: 90%;
+    border-bottom: 1px solid black;
 
     .form-group{
         position: relative;
@@ -21,17 +22,25 @@ export const StyledSearch = styled.div`
         position: absolute;
         top: -13px;
         left: 15px;
-        width: 28%;
+        width: 40%;
         text-align: center;
         background-color: white;
     }
     .form-group > input{
         width: 100%;
-        font-size: 1.5rem;
+        font-size: 1rem;
         border: none;
         text-align: center;
     }
     .form-group > input:focus{
         outline: none;
+    }
+    .form-group > button{
+        padding: .1rem;
+        border: none;
+        background-color: transparent;
+    }
+    i{
+        font-size: 1.2rem;
     }
 `

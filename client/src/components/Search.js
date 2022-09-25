@@ -17,7 +17,7 @@ export default function Search({item, setItem, onSearch}) {
                     value={item}
                     onChange={handleSearchChange}
                 />
-                <button onClick={onSearch}>Search</button>
+                <button onClick={onSearch}><i className='ri-search-line'></i></button>
             </div>
         </StyledSearch>
     )

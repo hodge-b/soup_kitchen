@@ -6,8 +6,8 @@ export const StyledCurrentInventoryView = styled.section`
     align-items: center;
     flex-direction: column;
 
-    padding: 0 1rem;
+    
     .currentInventory-title{
-        padding: 1rem 0;
+        padding: .5rem 0;
     }
 `
