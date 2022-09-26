@@ -4,11 +4,13 @@ export const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    padding: .5rem;
+
     width: 100%;
     border-bottom: 1px solid black;
 
+    .header-logo{
+        padding: 1rem;
+    }
     i{
         margin-right: 1rem;
     }

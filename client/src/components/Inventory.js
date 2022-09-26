@@ -1,5 +1,4 @@
 import React from 'react';
-import {nanoid} from 'nanoid'
 import {StyledInventory} from './styled/Inventory.styled';
 
 export default function Inventory({inventoryList}) {

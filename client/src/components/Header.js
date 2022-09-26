@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import { StyledHeader } from './styled/Header.styled';
 
 export default function Header() {
@@ -13,9 +14,9 @@ export default function Header() {
                 <i className='ri-menu-fill'></i> 
             :
                 <ul>
-                    <li>Home</li>
-                    <li>Add Item</li>
-                    <li>About</li>
+                    <Link to='/'><li>Home</li></Link>
+                    <Link to='/add'><li>Add Item</li></Link>
+                    <Link to='/about'><li>About</li></Link>
                 </ul>
             }
         </StyledHeader>

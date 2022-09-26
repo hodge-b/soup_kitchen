@@ -5,23 +5,42 @@ export const StyledInventory = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 1rem 0;
+    
+    padding: 1rem;
+    text-align: center;
 
     .container{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
 
-        width: 70%;
+        width: 90%;
+        margin-bottom: .5rem;
 
-        box-shadow: 0px 0px 3px 1px black;
+        box-shadow: 0px 0px 2px 0px black;
         border-radius: 5px;
+
+        user-select: none;
 
     }
     .container > img{
-        width: 20%;
+        width: 30%;
+        padding: .5rem;
     }
     .item-info-container > * {
         margin: .5rem;
+    }
+
+    @media only screen and (min-width: 760px){
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 1rem;
+        
+        justify-items: center;
+
+        .container{
+            width: 70%;
+            height: 100%;
+        }
     }
 `

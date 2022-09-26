@@ -43,4 +43,16 @@ export const StyledSearch = styled.div`
     i{
         font-size: 1.2rem;
     }
+
+    @media only screen and (min-width: 425px){
+        .form-group > label{
+            width: 32%;
+        }
+    }
+
+    @media only screen and (min-width: 760px){
+        .form-group > label{
+            width: 20%;
+        }
+    }
 `

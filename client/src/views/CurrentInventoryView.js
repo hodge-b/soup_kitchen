@@ -10,19 +10,16 @@ export default function CurrentInventoryView({
     item,
     setItem,
     onSearch,
-    onclick
 }) {
 
     return(
         <StyledCurrentInventoryView>
-            <Header />
             <h2 className='currentInventory-title'>Current Inventory</h2>
             <Search 
                 item={item}
                 setItem={setItem}
                 onSearch={onSearch}
             />
-            <button onClick={onclick}>submit</button>
             <Inventory
                 inventoryList={inventoryList}
             />
