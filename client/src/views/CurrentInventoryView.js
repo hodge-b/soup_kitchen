@@ -10,6 +10,7 @@ export default function CurrentInventoryView({
     item,
     setItem,
     onSearch,
+    onclick
 }) {
 
     return(
@@ -21,6 +22,7 @@ export default function CurrentInventoryView({
                 setItem={setItem}
                 onSearch={onSearch}
             />
+            <button onClick={onclick}>submit</button>
             <Inventory
                 inventoryList={inventoryList}
             />

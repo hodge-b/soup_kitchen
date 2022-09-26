@@ -11,19 +11,31 @@ export default function AppController() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/get',(response) =>{
-            setInventoryList(response);
-        }).then(() => {})
+        axios.get('http://localhost:3001/api/get').then(response => {
+            setInventoryList(response.data);
+            console.log(response.data)
+        })
     },[])
     
     const onSearch = e => {
         const params = {item: searchedItem}
-        axios.get('http://localhost:3001/api/get/',{params})
+        axios.get('http://localhost:3001/api/get',{params})
             .then((response) => {
-                console.log(response.data)
-                setInventoryList(prevItem => ([...prevItem, response.data]))
+                console.log(response.data);
+                setInventoryList(prevItem => ([...prevItem, response.data]));
             })
     }
+
+    const handleClick = e => {
+        axios.post('http://localhost:3001/api/insert',{
+            itemName: 'Apple',
+            itemImageLocation: 'images/apple.jpg',
+            itemQuantity: 2
+        }).then(() => {
+
+        })
+    }
+
 
     return(
         <main>
@@ -32,6 +44,7 @@ export default function AppController() {
                 item={searchedItem}
                 setItem={setSearchedItem}
                 onSearch={onSearch}
+                onclick={handleClick}
             />
             {/*<AddInventoryView />*/}
         </main>

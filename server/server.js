@@ -26,9 +26,16 @@ app.get('/api/get', (req, res) => {
     })
 })
 
-app.get('api/get/:item', (req, res) => {
-    const item = req.body.item;
-    res.send(item);
+app.post('/api/insert', (req, res) => {
+    const itemName = req.body.itemName;
+    const itemImageLocation = req.body.itemImageLocation;
+    const itemQuantity = req.body.itemQuantity;
+
+    const query = "INSERT INTO soup_kitchen_inventory (itemName, itemImageLocation, itemQuantity) VALUES (?,?,?);";
+    db.query(query, [itemName, itemImageLocation, itemQuantity], (err, result) =>{
+        console.log(err);
+    })
+
 })
 
 
