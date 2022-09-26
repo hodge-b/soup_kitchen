@@ -55,6 +55,10 @@ export const StyledAddInventoryView = styled.section`
         button{
             padding: .5rem;
             width: max-content;
+            margin-bottom: 1rem;
+        }
+        .addInventory-notification{
+            font-size: .8rem;
         }
     }
 `

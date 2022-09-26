@@ -8,7 +8,7 @@ import Header from './components/Header';
 
 export default function AppController() {
 
-    const [isItemAdded, setIsItemAdded] = useState(false)
+    const [isItemAdded, setIsItemAdded] = useState(false);
     const [inventoryList, setInventoryList] = useState([]);
     const [searchedItem, setSearchedItem] = useState('');
     const [addedItem, setAddedItem] = useState({
@@ -27,7 +27,7 @@ export default function AppController() {
         axios.get('http://localhost:3001/api/get').then(response => {
             setInventoryList(response.data);
         })
-        setAddedItem(prevState => !prevState)
+        setIsItemAdded(false);
     },[isItemAdded])
 
     
@@ -37,11 +37,17 @@ export default function AppController() {
 
     const onAddItemSubmit = e => {
         e.preventDefault();
+
+        
         axios.post('http://localhost:3001/api/insert',{
             itemName: addedItem.name,
             itemImageLocation: 'images/foodItem.jpg',
             itemQuantity: addedItem.quantity
-        }).then(() => {setIsItemAdded(true)})
+        })
+        .then(() => {})
+        .catch(err => console.error(err))
+        setIsItemAdded(true);
+        setAddedItem({name: '', quantity: 0})
     }
 
 

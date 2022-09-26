@@ -21,6 +21,7 @@ export const StyledInventory = styled.div`
         border-radius: 5px;
 
         user-select: none;
+        overflow: hidden;
 
     }
     .container > img{
