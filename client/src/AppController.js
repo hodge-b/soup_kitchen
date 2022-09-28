@@ -59,6 +59,7 @@ export default function AppController(){
         setIsMenuModal(false);
     }
 
+    
     // function to handle menu click when width is for mobile
     const handleMenuClick = e => {
         // turn off body scroll
@@ -66,6 +67,7 @@ export default function AppController(){
         body.style.overflow = "hidden";
         setIsMenuModal(true);
     }
+
 
     // function to handle submit click from add item form
     const onAddItemSubmit = e => {
@@ -81,7 +83,10 @@ export default function AppController(){
         .catch(error => {
             console.log(error)
         })
+
+        setAddedItem({name:'', quantity:0, units:'', imageURL:''});
     }
+
 
     // render to screen
     return(
