@@ -27,6 +27,16 @@ app.get('/api/get', (req, res) => {
     })
 })
 
+app.post('/api/insert', (req, res) => {
+    const itemName = req.body.itemName;
+    const itemImageLocation = req.body.itemImageURL;
+    const itemQuantity = req.body.itemQuantity;
+    const itemUnits = 'units';
+
+    const query = "INSERT INTO soup_kitchen_inventory (itemName, itemImageLocation, itemQuantity, itemUnits) VALUES (?,?,?,?);";
+    db.query(query, [itemName, itemImageLocation, itemQuantity, itemUnits], err => console.error(err ? 'error' : 'posted successfully'));
+})
+
 app.listen(PORT, () => {
     console.log(`server running on PORT: ${PORT}`);
 })

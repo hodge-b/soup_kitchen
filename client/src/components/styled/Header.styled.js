@@ -13,6 +13,8 @@ export const StyledHeader = styled.header`
     background-color: white;
     border-bottom: 1px solid black;
 
+    z-index: 2;
+
     .nav-container{
         i{
             font-size: 1.3rem;

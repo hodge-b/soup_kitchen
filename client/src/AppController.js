@@ -13,6 +13,12 @@ export default function AppController(){
     const [isMenuModal, setIsMenuModal] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     const [view, setView] = useState('view-inventory');
+    const [addedItem, setAddedItem] = useState({
+        name: '',
+        quantity: 0,
+        units: '',
+        imageURL: '',
+    });
 
 
     // listen for window resizing to send to down as props
@@ -25,6 +31,11 @@ export default function AppController(){
         axios.get(`http://localhost:3001/api/get`)
          .then(response => setInventoryList(response.data));
     },[])
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/get`)
+         .then(response => setInventoryList(response.data));
+    },[inventoryList])
 
 
     // function to determine what view to display
@@ -50,10 +61,26 @@ export default function AppController(){
 
     // function to handle menu click when width is for mobile
     const handleMenuClick = e => {
-        // turn on body scroll
+        // turn off body scroll
         const body = document.querySelector('body');
         body.style.overflow = "hidden";
         setIsMenuModal(true);
+    }
+
+    // function to handle submit click from add item form
+    const onAddItemSubmit = e => {
+        axios.post('http://localhost:3001/api/insert',{
+            itemName: addedItem.name,
+            itemQuantity: addedItem.quantity,
+            itemUnits: addedItem.units,
+            itemImageURL: addedItem.imageURL !== '' ? addedItem.imageURL : 'https://banner2.cleanpng.com/20190731/coj/kisspng-fork-icon-fast-food-icon-5d4125521cc0d5.6481897415645504821178.jpg'
+        })
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     // render to screen
@@ -73,7 +100,11 @@ export default function AppController(){
                     />
                 :
                 view === 'add-inventory' ? 
-                    <AddInventory />
+                    <AddInventory
+                        addedItem={addedItem}
+                        setAddedItem={setAddedItem}
+                        onAddItemSubmit={onAddItemSubmit}
+                    />
                 :
                     <></>
             }
