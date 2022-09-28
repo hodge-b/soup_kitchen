@@ -6,6 +6,8 @@ export const StyledAddInventory = styled.section`
     align-items: center;
     flex-direction: column;
 
+    margin-bottom: 1rem;
+
     h2{
         padding: 1rem 0;
     }
