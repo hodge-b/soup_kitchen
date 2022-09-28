@@ -11,6 +11,7 @@ export default function AppController(){
     // create states for application
     const [inventoryList, setInventoryList] = useState([]);
     const [isMenuModal, setIsMenuModal] = useState(false);
+    const [isInventoryListUpdate, setIsInventoryListUpdate] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     const [view, setView] = useState('view-inventory');
     const [addedItem, setAddedItem] = useState({
@@ -35,7 +36,8 @@ export default function AppController(){
     useEffect(() => {
         axios.get(`http://localhost:3001/api/get`)
          .then(response => setInventoryList(response.data));
-    },[inventoryList])
+         setIsInventoryListUpdate(false);
+    },[isInventoryListUpdate])
 
 
     // function to determine what view to display
@@ -83,6 +85,13 @@ export default function AppController(){
         .catch(error => {
             console.log(error)
         })
+
+
+        axios.get(`http://localhost:3001/api/get`)
+         .then(response => {
+            setInventoryList(response.data);
+            setIsInventoryListUpdate(true);
+        });
 
         setAddedItem({name:'', quantity:0, units:'', imageURL:''});
     }

@@ -15,19 +15,17 @@ export default function Header({
                 <p>Soup Kitchen</p>
                 <p><small>Admin Panel</small></p>
             </div>
-            <div className="nav-container">
-                {
-                    // check width to display menu button or navbar
-                    width >= 768 ?
-                        <>
-                            <button  className="btn--view-inventory" onClick={onclick}>View Inventory</button>
-                            <button className="btn--add-inventory" onClick={onclick}>Add Inventory</button>
-                            <button className="btn--logout" onClick={onclick}>Logout</button>
-                        </>
-                    :
-                        <i className="ri-menu-line" onClick={onclick}></i>
-                }
-            </div>
+            {
+                // check width to display menu button or navbar
+                width >= 768 ?
+                    <div className="nav-button-container">
+                        <button  className="btn--view-inventory" onClick={onHandleViewChange}>View Inventory</button>
+                        <button className="btn--add-inventory" onClick={onHandleViewChange}>Add Inventory</button>
+                        <button className="btn--logout" onClick={onHandleViewChange}>Logout</button>
+                    </div>
+                :
+                    <i className="ri-menu-line" onClick={onclick}></i>
+            }
             {
                 // check if menu modal must be rendered
                 isMenuModal ?

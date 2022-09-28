@@ -18,7 +18,9 @@ export default function ViewInventory({inventoryList}){
     return(
         <StyledViewInventory>
             <h2>Current Inventory</h2>
-            {inventoryElement}
+            <div className="inventory-container">
+                {inventoryElement}
+            </div>
         </StyledViewInventory>
     )
 }

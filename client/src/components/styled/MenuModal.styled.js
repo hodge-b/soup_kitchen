@@ -11,8 +11,7 @@ export const StyledMenuModal = styled.div`
     background-color: #D3D3D3;
 
     button{
-        width: 80%;
-        padding: .2rem;
+        width: 80% !important;
     }
 
     .menu-container{

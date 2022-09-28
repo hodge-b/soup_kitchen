@@ -11,6 +11,12 @@ export const StyledViewInventory = styled.section`
     h2{
         padding: 1rem 0;
     }
+    .inventory-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
     .item-container{
         display: flex;
         justify-content: space-around;
@@ -27,5 +33,13 @@ export const StyledViewInventory = styled.section`
     }
     .item-container > img{
         width: 25%;
+    }
+
+    @media only screen and (min-width: 768px){
+        .inventory-container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
     }
 `

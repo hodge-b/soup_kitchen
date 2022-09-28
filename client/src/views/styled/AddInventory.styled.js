@@ -42,7 +42,7 @@ export const StyledAddInventory = styled.section`
         position: absolute;
         top: -10px;
         left: 10px;
-        width: 40%;
+        width: max-content;
 
         font-size: .8rem;
         text-align: center;
@@ -55,6 +55,20 @@ export const StyledAddInventory = styled.section`
     }
     .form-group > input:focus{
         outline: none;
+    }
+
+    @media only screen and (min-width: 768px){
+        
+        .form-container{
+            width: 60%;
+        }
+        .form-group{
+            width: 80%;
+        }
+        .form-group > label{
+            width: 35%;
+            font-size: 1rem;
+        }
     }
     
 `

@@ -15,12 +15,19 @@ export const StyledHeader = styled.header`
 
     z-index: 2;
 
-    .nav-container{
-        i{
-            font-size: 1.3rem;
-        }
+    i{
+        font-size: 1.3rem;
     }
+    button{
+        width: 20%;
+        padding: .2rem;
+    }
+    .nav-button-container{
+        display: flex;
+        justify-content: space-around;
 
+        width: 70%;
+    }
     .screen-overlay{
         position: absolute;
         top: 0;
