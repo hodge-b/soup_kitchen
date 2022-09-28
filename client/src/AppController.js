@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
-import Header from './components/Header';
-import './style.css';
+import axios from 'axios';
+
 import AddInventory from './views/AddInventory';
 import ViewInventory from './views/ViewInventory';
+import Header from './components/Header';
+import './style.css';
 
 export default function AppController(){
 
@@ -15,6 +17,14 @@ export default function AppController(){
 
     // listen for window resizing to send to down as props
     window.addEventListener('resize', () => setWidth(window.innerWidth));
+
+
+    /* gather inventory list from database and add it to state
+       on initial render */
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/get`)
+         .then(response => setInventoryList(response.data));
+    },[])
 
 
     // function to determine what view to display
@@ -31,11 +41,18 @@ export default function AppController(){
             default:
                 break;
         }
+
+        // turn on body scroll
+        const body = document.querySelector('body');
+        body.style.overflow = "auto";
         setIsMenuModal(false);
     }
 
     // function to handle menu click when width is for mobile
     const handleMenuClick = e => {
+        // turn on body scroll
+        const body = document.querySelector('body');
+        body.style.overflow = "hidden";
         setIsMenuModal(true);
     }
 
@@ -51,7 +68,9 @@ export default function AppController(){
             {
                 // determine which view to render based on state
                 view === 'view-inventory' ?
-                    <ViewInventory />
+                    <ViewInventory 
+                        inventoryList={inventoryList}
+                    />
                 :
                 view === 'add-inventory' ? 
                     <AddInventory />

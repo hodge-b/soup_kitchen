@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     padding: .5rem 1rem;
+    background-color: white;
     border-bottom: 1px solid black;
 
     .nav-container{

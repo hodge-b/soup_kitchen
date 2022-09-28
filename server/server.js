@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // API routes
 app.get('/api/get', (req, res) => {
-    const query = "SELECT * FROM soup_kithen_inventory";
+    const query = "SELECT * FROM soup_kitchen_inventory";
     db.query(query, (err, result) => {
         res.send(result);
     })
