@@ -5,6 +5,7 @@ export default function UpdateInventory({
     updateItem, 
     setUpdateItem,
     onUpdateItemSubmit,
+    onDeleteItemSubmit,
 }){
     
 
@@ -44,7 +45,10 @@ export default function UpdateInventory({
                         onChange={e => setUpdateItem(prevItem => {return{...prevItem, itemImageLocation: e.target.value}})} 
                     />
                 </div>
-                <button onClick={onUpdateItemSubmit}>Update Item</button>
+                <div className="form-button-container">
+                    <button onClick={onUpdateItemSubmit}>Update Item</button>
+                    <button className="btn--delete" onClick={onDeleteItemSubmit}>Delete Item</button>
+                </div>
             </div>
         </StyledUpdateInventory>
     )

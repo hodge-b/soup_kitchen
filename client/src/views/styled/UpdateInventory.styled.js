@@ -23,9 +23,6 @@ export const StyledUpdateInventory = styled.section`
         box-shadow: 0px 0px 3px 0px black;
         border-radius: 5px;
     }
-    .form-container > button{
-        padding: .5rem;
-    }
     .form-group{
         position: relative;
         display: flex;
@@ -55,6 +52,18 @@ export const StyledUpdateInventory = styled.section`
     }
     .form-group > input:focus{
         outline: none;
+    }
+    .form-button-container{
+        display: flex;
+        justify-content: space-evenly;
+
+        width: 100%;
+    }
+    .form-button-container > button{
+        padding: .5rem;
+    }
+    .btn--delete{
+        color: red;
     }
 
     @media only screen and (min-width: 768px){

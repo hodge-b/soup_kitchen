@@ -90,19 +90,18 @@ export default function AppController(){
         .then(response => {
             console.log(response.data)
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(err => console.error(err));
 
 
         axios.get(`http://localhost:3001/api/get`)
-         .then(response => {
+        .then(response => {
             setInventoryList(response.data);
             setIsInventoryListUpdate(true);
-        });
+        })
+        .catch(err => console.error(err));
 
         setAddedItem({name:'', quantity:0, units:'', imageURL:''});
-        
+        setView('view-inventory');
     }
 
 
@@ -112,15 +111,35 @@ export default function AppController(){
             itemQuantity: updateItem.itemQuantity,
             itemImageLocation: updateItem.itemImageLocation,
             itemUnits: updateItem.itemUnits !== '' ? updateItem.itemUnits : 'units',
-        }).then(response => {
+        })
+        .then(response => {
             console.log(response)
         })
+        .catch(err => console.error(err));
 
         axios.get(`http://localhost:3001/api/get`)
-         .then(response => {
+        .then(response => {
             setInventoryList(response.data);
             setIsInventoryListUpdate(true);
-        });
+        })
+        .catch(err => console.error(err));
+
+        setAddedItem({name:'', quantity:0, units:'', imageURL:''});
+        setView('view-inventory');
+    }
+
+
+    const onDeleteItemSubmit = e => {
+        axios.delete(`http://localhost:3001/api/delete/${updateItem.id}`)
+        .then(() => {})
+        .catch(err => console.error(err));
+
+        axios.get(`http://localhost:3001/api/get`)
+        .then(response => {
+            setInventoryList(response.data);
+            setIsInventoryListUpdate(true);
+        })
+        .catch(err => console.error(err));
 
         setAddedItem({name:'', quantity:0, units:'', imageURL:''});
         setView('view-inventory');
@@ -156,6 +175,7 @@ export default function AppController(){
                         updateItem={updateItem}
                         setUpdateItem={setUpdateItem}
                         onUpdateItemSubmit={onUpdateItemSubmit}
+                        onDeleteItemSubmit={onDeleteItemSubmit}
                     />
                 :
                     <></>
