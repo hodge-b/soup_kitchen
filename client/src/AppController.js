@@ -5,6 +5,7 @@ import AddInventory from './views/AddInventory';
 import ViewInventory from './views/ViewInventory';
 import Header from './components/Header';
 import './style.css';
+import UpdateInventory from './views/UpdateInventory';
 
 export default function AppController(){
 
@@ -14,6 +15,7 @@ export default function AppController(){
     const [isInventoryListUpdate, setIsInventoryListUpdate] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     const [view, setView] = useState('view-inventory');
+    const [updateItem, setUpdateItem] = useState({});
     const [addedItem, setAddedItem] = useState({
         name: '',
         quantity: 0,
@@ -43,13 +45,19 @@ export default function AppController(){
     // function to determine what view to display
     const onViewChange = e => {
         const buttonName = e.target.className.split(' ')[0];
-
+        const buttonID = e.target.id;
+        
         switch(buttonName){
             case 'btn--view-inventory':
                 setView('view-inventory');
                 break;
             case 'btn--add-inventory':
                 setView('add-inventory');
+                break;
+            case 'btn--update-inventory':
+                const selectedItem = inventoryList.filter(elem => elem.id == buttonID);
+                selectedItem.map(prevItem => setUpdateItem(prevItem));
+                setView('update-inventory');
                 break;
             default:
                 break;
@@ -76,7 +84,7 @@ export default function AppController(){
         axios.post('http://localhost:3001/api/insert',{
             itemName: addedItem.name,
             itemQuantity: addedItem.quantity,
-            itemUnits: addedItem.units,
+            itemUnits: addedItem.units !== '' ? addedItem.units : 'units',
             itemImageURL: addedItem.imageURL !== '' ? addedItem.imageURL : 'https://banner2.cleanpng.com/20190731/coj/kisspng-fork-icon-fast-food-icon-5d4125521cc0d5.6481897415645504821178.jpg'
         })
         .then(response => {
@@ -94,6 +102,28 @@ export default function AppController(){
         });
 
         setAddedItem({name:'', quantity:0, units:'', imageURL:''});
+        
+    }
+
+
+    const onUpdateItemSubmit = e => {
+        axios.put(`http://localhost:3001/api/put/${updateItem.id}`,{
+            itemName: updateItem.itemName,
+            itemQuantity: updateItem.itemQuantity,
+            itemImageLocation: updateItem.itemImageLocation,
+            itemUnits: updateItem.itemUnits !== '' ? updateItem.itemUnits : 'units',
+        }).then(response => {
+            console.log(response)
+        })
+
+        axios.get(`http://localhost:3001/api/get`)
+         .then(response => {
+            setInventoryList(response.data);
+            setIsInventoryListUpdate(true);
+        });
+
+        setAddedItem({name:'', quantity:0, units:'', imageURL:''});
+        setView('view-inventory');
     }
 
 
@@ -111,6 +141,7 @@ export default function AppController(){
                 view === 'view-inventory' ?
                     <ViewInventory 
                         inventoryList={inventoryList}
+                        onViewChange={onViewChange}
                     />
                 :
                 view === 'add-inventory' ? 
@@ -118,6 +149,13 @@ export default function AppController(){
                         addedItem={addedItem}
                         setAddedItem={setAddedItem}
                         onAddItemSubmit={onAddItemSubmit}
+                    />
+                :
+                view === 'update-inventory' ?
+                    <UpdateInventory 
+                        updateItem={updateItem}
+                        setUpdateItem={setUpdateItem}
+                        onUpdateItemSubmit={onUpdateItemSubmit}
                     />
                 :
                     <></>

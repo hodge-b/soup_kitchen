@@ -37,6 +37,20 @@ app.post('/api/insert', (req, res) => {
     db.query(query, [itemName, itemImageLocation, itemQuantity, itemUnits], err => console.error(err ? 'error' : 'posted successfully'));
 })
 
+app.put(`/api/put/:id`, (req, res) => {
+    const itemName = req.body.itemName;
+    const itemImageLocation = req.body.itemImageLocation;
+    const itemQuantity = req.body.itemQuantity;
+    const itemUnits = req.body.itemUnits;
+
+    const query = `UPDATE soup_kitchen_inventory SET itemName = '${itemName}', itemImageLocation = '${itemImageLocation}', itemQuantity = '${itemQuantity}', itemUnits = '${itemUnits}' WHERE id = '${req.params.id}'`;
+
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(result.affectedRows + " record(s) updated")
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`server running on PORT: ${PORT}`);
 })
