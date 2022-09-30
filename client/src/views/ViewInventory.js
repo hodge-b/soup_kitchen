@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from '../components/Search';
 import { StyledViewInventory } from './styled/ViewInventory.styled';
 
 export default function ViewInventory({
@@ -20,6 +21,7 @@ export default function ViewInventory({
     return(
         <StyledViewInventory>
             <h2>Current Inventory</h2>
+            <Search />
             <div className="inventory-container">
                 {inventoryElement}
             </div>
